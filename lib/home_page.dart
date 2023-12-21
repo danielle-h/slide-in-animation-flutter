@@ -1,3 +1,4 @@
+import 'package:column_animations/list_page.dart';
 import 'package:flutter/material.dart';
 
 import 'animated_tile.dart';
@@ -100,7 +101,15 @@ class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: ElevatedButton(
-                  onPressed: () {}, child: const Text("not animated")),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              ListPage(title: "List Animation")),
+                    );
+                  },
+                  child: const Text("Go to list page")),
             )
           ],
         ),
