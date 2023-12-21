@@ -30,7 +30,35 @@ class MyHomePage extends StatefulWidget {
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<MyHomePage> with TickerProviderStateMixin {
+  //animation
+  late AnimationController animationController;
+  late Animation<double> animation;
+  int slide = 30;
+
+  @override
+  void initState() {
+    animationController = AnimationController(
+        duration: const Duration(milliseconds: 1000), vsync: this);
+    animation = CurvedAnimation(
+        parent: animationController, curve: Curves.fastOutSlowIn);
+
+    startAnimation();
+
+    super.initState();
+  }
+
+  void startAnimation() {
+    animationController.value = 0;
+    animationController.forward();
+  }
+
+  @override
+  void dispose() {
+    animationController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,11 +71,22 @@ class _MyHomePageState extends State<MyHomePage> {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
-              'Inspiring quote',
-              style: Theme.of(context).textTheme.headlineLarge,
-              textAlign: TextAlign.center,
-            ),
+            AnimatedBuilder(
+                animation: animationController,
+                builder: (context, child) {
+                  return Transform(
+                    transform: Matrix4.translationValues(
+                        0, (1.0 - animation.value) * slide, 0),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Text(
+                        'Inspiring quote',
+                        style: Theme.of(context).textTheme.headlineLarge,
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  );
+                }),
             Expanded(
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
