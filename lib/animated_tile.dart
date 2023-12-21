@@ -3,13 +3,11 @@ import 'package:flutter/material.dart';
 class AnimatedTile extends StatelessWidget {
   const AnimatedTile({
     super.key,
-    required this.animationController,
     required this.animation,
     required this.slide,
     required this.child,
   });
 
-  final AnimationController animationController;
   final Animation<double> animation;
   final int slide;
   final Widget child;
@@ -17,7 +15,8 @@ class AnimatedTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AnimatedBuilder(
-        animation: animationController,
+        animation: animation,
+        child: child,
         builder: (context, child) {
           return Transform(
             transform: Matrix4.translationValues(
