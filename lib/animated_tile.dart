@@ -20,7 +20,8 @@ class AnimatedTile extends StatelessWidget {
         builder: (context, child) {
           return Transform(
             transform: Matrix4.translationValues(
-                0, (1.0 - animation.value) * slide, 0),
+                    0, (1.0 - animation.value) * slide, 0) *
+                Matrix4.rotationX((1 - animation.value) * 0.8),
             child: Padding(padding: const EdgeInsets.all(8.0), child: child),
           );
         });
