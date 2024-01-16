@@ -2,6 +2,8 @@
 
 ## Overview
 
+![Alt text](each-different-trim.gif)  ![Alt text](list-side-trim.gif)  ![Alt text](rotation-scale-trim.gif)
+
 A project demonstrating slide-in animations in a column in Flutter, using an [AnimatedBuilder](https://api.flutter.dev/flutter/widgets/AnimatedBuilder-class.html) and a [Transform](https://api.flutter.dev/flutter/widgets/Transform-class.html) widget. The code is explained in the below tutorials.
 
 ### Written tutorials:
